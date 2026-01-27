@@ -1,17 +1,3 @@
-# GET /api/coupons/<int:id> endpoint that returns a coupon by id or 404 if not found.
-@app.route('/api/coupons/<int:id>', methods=['GET'])
-def get_coupon_by_id(id):
-    for coupon in coupons:
-        if coupon["_id"] == id:
-            return jsonify({
-                "success": True,
-                "message": "Coupon retrieved successfully",
-                "data": coupon
-            }), 200
-    return jsonify({
-        "success": False,
-        "message": "Coupon not found"
-    }), 404
 from flask import Flask, jsonify, request
 app = Flask(__name__)
 
@@ -107,21 +93,6 @@ coupons = [
 def get_coupons():
     return coupons
 
-# POST /api/coupons endpoint that adds a new coupon to the coupons list.
-@app.route('/api/coupons', methods=['POST'])
-def add_coupon():
-    new_coupon = request.get_json()
-    if not new_coupon or '_id' not in new_coupon or 'code' not in new_coupon or 'discount' not in new_coupon:
-        return jsonify({
-            "success": False,
-            "message": "Invalid coupon data. '_id', 'code', and 'discount' are required."
-        }), 400
-    coupons.append(new_coupon)
-    return jsonify({
-        "success": True,
-        "message": "Coupon successfully created",
-        "data": new_coupon
-    }), 201
 
 # GET /api/coupons/count returns the number of coupons in the system.
 @app.route('/api/coupons/count', methods=['GET'])
