@@ -51,6 +51,7 @@ def get_products():
 # GET /api/products/<int:product_id> endpoint that returns a single product or 'Not found'
 
 # GET /api/products/<int:product_id> endpoint that returns a single product or 'Not found'
+
 # GET    http://127.0.0.1:5000/api/products/<int:product_id>
 @app.route('/api/products/<int:product_id>', methods=['GET'])
 def get_product_by_id(product_id):
